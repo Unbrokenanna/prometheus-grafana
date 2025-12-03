@@ -17,9 +17,9 @@ spec:
           app: prometheus
     spec:
       securityContext:
-        runAsUser: 65534
-        runAsGroup: 65534
-        fsGroup: 65534
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
       containers:
         - args:
             - --config.file=/etc/prometheus/prometheus.yml
