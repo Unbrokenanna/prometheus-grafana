@@ -1,26 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f compose.yaml -o k8s/
-    kompose.version: 1.37.0 (HEAD)
   labels:
-    io.kompose.service: prometheus
+    app: prometheus
   name: prometheus
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: prometheus
+      app: prometheus
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert -f compose.yaml -o k8s/
-        kompose.version: 1.37.0 (HEAD)
-      labels:
-        io.kompose.service: prometheus
+        labels:
+          app: prometheus
     spec:
       containers:
         - args:
@@ -32,14 +26,14 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: /etc/prometheus
-              name: prometheus-cm0
+              name: prometheus
             - mountPath: /prometheus
               name: prom-data
       restartPolicy: Always
       volumes:
         - configMap:
-            name: prometheus-cm0
-          name: prometheus-cm0
+            name: prometheus
+          name: prometheus
         - name: prom-data
           persistentVolumeClaim:
             claimName: prom-data

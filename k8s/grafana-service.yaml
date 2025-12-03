@@ -1,11 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f compose.yaml -o k8s/
-    kompose.version: 1.37.0 (HEAD)
   labels:
-    io.kompose.service: grafana
+    app: grafana
   name: grafana
 spec:
   ports:
@@ -13,4 +10,4 @@ spec:
       port: 3000
       targetPort: 3000
   selector:
-    io.kompose.service: grafana
+    app: grafana

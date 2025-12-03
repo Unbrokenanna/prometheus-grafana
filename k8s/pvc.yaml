@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    io.kompose.service: prom-data
+    app: prom-data
   name: prom-data
 spec:
   accessModes:
