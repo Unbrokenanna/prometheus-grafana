@@ -19,9 +19,15 @@ spec:
       containers:
         - env:
             - name: GF_SECURITY_ADMIN_PASSWORD
-              value: grafana
+              valueFrom:
+                secretKeyRef:
+                  name: grafana
+                  key: admin_password
             - name: GF_SECURITY_ADMIN_USER
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: grafana
+                  key: admin_user
           image: grafana/grafana
           name: grafana
           ports:
